@@ -12,11 +12,15 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          command: |
+              echo $DOCKER_USERNAME
+              echo $DOCKER_PASSWORD
+      - run:
           name: Build the Dockerfile
           command: |
             docker build -t cygnetops/react-test -f Dockerfile.dev .
       - run:
           name: Run the Dockerfile
           command: |
-            echo '$DOCKERHUB_PASSWORD' | docker login -u karan2fady --password-stdin
+            echo '$DOCKER_PASSWORD' | docker login -u karan2fady --password-stdin
             docker run -e CI=true cygnetops/react-test npm test
