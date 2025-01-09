@@ -1,0 +1,19 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: cimg/base:2022.09
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run:
+          name: Build the Dockerfile
+          command: |
+            docker build -t cygnetops/react-test -f Dockerfile.dev .
+      - run:
+          name: Run the Dockerfile
+          command: |
+            docker run -e CI=true cygnetops/react-test npm test
