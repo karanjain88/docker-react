@@ -1,0 +1,21 @@
+name: nodeApp
+
+services:
+  my-web-app:
+    # Not supplying an image, rather building it from dockerfile.
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # Bookmark a container: meaning this node_modules will not reference any folder on the outside filesystem
+      - .:/app # Map each folder in current directory(.) to folders inside our container with directory /app
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"] # Overrides the default command of the dockerfile
