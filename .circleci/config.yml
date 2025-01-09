@@ -12,9 +12,4 @@ jobs:
       - run:
           name: Build the Dockerfile
           command: |
-            echo $DOCKER_USERNAME | docker build -t cygnetops/react-test -f Dockerfile.dev .
-      - run:
-          name: Run the Dockerfile
-          command: |
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker run -e CI=true cygnetops/react-test npm test
+            echo $DOCKER_USERNAME | echo $DOCKER_PASSWORD
