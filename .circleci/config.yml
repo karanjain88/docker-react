@@ -18,5 +18,5 @@ jobs:
       - run:
           name: Run the Dockerfile
           command: |
-            docker login -u karan2fady -p Svaley@321
+            echo "$DOCKERHUB_PASSWORD" | docker login -u karan2fady --password-stdin
             docker run -e CI=true cygnetops/react-test npm test
