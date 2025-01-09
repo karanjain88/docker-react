@@ -7,9 +7,6 @@ jobs:
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
-    environment:
-      DOC_USER: $DOCKER_USERNAME
-      DOC_PASS: $DOCKER_PASSWORD
     steps:  
       - checkout
       - setup_remote_docker:
@@ -21,5 +18,5 @@ jobs:
       - run:
           name: Run the Dockerfile
           command: |
-            echo $DOC_PASS | docker login -u karan2fady --password-stdin
+            docker login -u karan2fady -p Svaley@321
             docker run -e CI=true cygnetops/react-test npm test
