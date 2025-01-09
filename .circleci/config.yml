@@ -3,18 +3,18 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: cimg/base:2022.09
+      - image: cimg/base:current
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
-    steps:
+    steps:  
       - checkout
       - run:
           name: Build the Dockerfile
           command: |
-            docker build -t cygnetops/react-test -f Dockerfile.dev .
+            echo $DOCKER_USERNAME | docker build -t cygnetops/react-test -f Dockerfile.dev .
       - run:
           name: Run the Dockerfile
           command: |
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker run -e CI=true cygnetops/react-test npm test
