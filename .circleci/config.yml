@@ -15,5 +15,5 @@ jobs:
           name: Build and Run the Dockerfile
           command: |
             docker build -t cygnetops/react-test -f Dockerfile.dev .
-            echo $DOCKER_PASSWORD | docker login -u karan2fady --password-stdin
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker run -e CI=true cygnetops/react-test npm test
