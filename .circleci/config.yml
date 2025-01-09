@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: cimg/base:current
         auth:
-          username: $DOCKER_USERNAME_NEW
-          password: $DOCKER_PASSWORD_NEW
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     steps:  
       - checkout
       - setup_remote_docker:
@@ -18,5 +18,5 @@ jobs:
       - run:
           name: Run the Dockerfile
           command: |
-            echo $DOCKER_PASSWORD_NEW | docker login -u $DOCKER_USERNAME_NEW --password-stdin
+            echo Svaley@321 | docker login -u karan2fady --password-stdin
             docker run -e CI=true cygnetops/react-test npm test
