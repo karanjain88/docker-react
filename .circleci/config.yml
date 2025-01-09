@@ -5,11 +5,18 @@ jobs:
     docker:
       - image: cimg/base:current
         auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+          username: karan2fady
+          password: Svaley@321
     steps:  
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Build the Dockerfile
           command: |
-            echo $DOCKER_USERNAME | echo $DOCKER_PASSWORD
+            docker build -t cygnetops/react-test -f Dockerfile.dev .
+      - run:
+          name: Run the Dockerfile
+          command: |
+            docker login -u karan2fady -p Svaley@321
+            docker run -e CI=true cygnetops/react-test npm test
