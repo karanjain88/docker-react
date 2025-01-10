@@ -31,7 +31,7 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: ${{ env.AWS_REGION }}
+          region: ${{ secrets.AWS_REGION }}
           application_name: frontend
           environment_name: Frontend-env-3
           existing_bucket_name: elasticbeanstalk-us-east-1-677276121529
