@@ -1,6 +1,6 @@
 # This is a muti-step build
 # Step 1
-FROM node:16-alpine as build
+FROM node:23-alpine as build
 WORKDIR /app
 COPY package.json .
 RUN npm install
